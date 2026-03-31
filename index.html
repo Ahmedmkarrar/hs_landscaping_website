@@ -1359,8 +1359,8 @@ footer{
 @media(max-width:860px){
   .hero-inner{grid-template-columns:1fr;text-align:center}
   .hero-left{display:flex;flex-direction:column;align-items:center}
-  .hero-right{display:block}
-  #calendly-hero{min-height:580px}
+  .hero-right{display:none} /* hide calendly panel — popup used instead */
+  .hero{padding:60px 1.5rem 52px;min-height:auto}
   .stats-inner{grid-template-columns:repeat(2,1fr)}
   .process-grid{grid-template-columns:1fr}
   .process-grid::before{display:none}
@@ -1383,7 +1383,199 @@ footer{
   nav .nav-cta{display:none}
   .section{padding:60px 1.25rem}
   .calc-inner{padding:32px 22px}
+  /* Mobile hero — single focused CTA */
+  .hero-inner{gap:20px}
+  .hero-btns{flex-direction:column;align-items:stretch;gap:10px}
+  .hero-btns .btn-ghost{display:none} /* remove secondary CTA on mobile */
+  .btn-primary{width:100%;justify-content:center;font-size:16px;padding:18px 24px}
+  .hero-trust{justify-content:center}
+  h1{font-size:clamp(46px,14vw,78px)}
+  .hero-sub{font-size:15px}
+  /* Booking section — clean mobile */
+  .booking-section{padding:60px 1.25rem !important}
+  /* Urgency section */
+  .urgency-section{padding:40px 1.25rem}
 }
+
+/* ═══════════════════════════════════════════
+   MOBILE HERO PROOF CARDS
+═══════════════════════════════════════════ */
+.hero-mobile-proof{
+  display:none; /* desktop: hidden — desktop uses iframe */
+  width:100%;
+  margin-top:28px;
+}
+.hmp-label{
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  color:var(--text-muted);
+  display:flex;
+  align-items:center;
+  gap:7px;
+  margin-bottom:10px;
+}
+.hmp-card{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:12px 14px;
+  margin-bottom:8px;
+  animation:slideIn .5s ease both;
+}
+.hmp-card:nth-child(2){animation-delay:.1s}
+.hmp-card:nth-child(3){animation-delay:.2s}
+.hmp-card:nth-child(4){animation-delay:.3s}
+.hmp-icon{font-size:22px;flex-shrink:0}
+.hmp-job{font-size:13.5px;font-weight:700;line-height:1.3}
+.hmp-meta{font-size:11.5px;color:var(--text-muted);margin-top:2px}
+.hmp-check{
+  margin-left:auto;
+  flex-shrink:0;
+  width:24px;height:24px;
+  border-radius:50%;
+  background:rgba(63,185,80,0.15);
+  border:1px solid rgba(63,185,80,0.3);
+  color:#3fb950;
+  font-size:12px;
+  display:flex;align-items:center;justify-content:center;
+  font-weight:700;
+}
+.hmp-total{
+  text-align:center;
+  font-size:12px;
+  color:var(--text-muted);
+  margin-top:6px;
+}
+.hmp-total strong{color:var(--gold)}
+@media(max-width:860px){
+  .hero-mobile-proof{display:block}
+}
+
+/* ═══════════════════════════════════════════
+   SERVICES WE BOOK
+═══════════════════════════════════════════ */
+.services-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+  margin-top:52px;
+}
+.service-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:28px 22px;
+  transition:all .3s;
+  position:relative;
+  overflow:hidden;
+}
+.service-card::after{
+  content:'';
+  position:absolute;
+  bottom:0;left:0;right:0;
+  height:2px;
+  background:linear-gradient(90deg,var(--gold3),var(--gold2));
+  opacity:0;
+  transition:opacity .3s;
+}
+.service-card:hover{
+  border-color:var(--gold-border);
+  transform:translateY(-3px);
+  box-shadow:0 16px 40px rgba(0,0,0,0.3);
+}
+.service-card:hover::after{opacity:1}
+.service-icon{font-size:30px;margin-bottom:12px;line-height:1}
+.service-name{font-size:15px;font-weight:800;margin-bottom:6px}
+.service-price{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:20px;
+  color:var(--gold);
+  letter-spacing:0.03em;
+  margin-bottom:10px;
+}
+.service-desc{font-size:13px;color:var(--text-muted);line-height:1.65}
+@media(max-width:860px){
+  .services-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:480px){
+  .services-grid{grid-template-columns:1fr 1fr}
+  .service-card{padding:20px 16px}
+}
+
+/* ═══════════════════════════════════════════
+   30-DAY TIMELINE
+═══════════════════════════════════════════ */
+.timeline{
+  max-width:700px;
+  margin:52px auto 0;
+  position:relative;
+}
+.timeline::before{
+  content:'';
+  position:absolute;
+  left:28px;top:0;bottom:0;
+  width:2px;
+  background:linear-gradient(180deg,var(--gold-border),var(--gold-border) 80%,transparent);
+}
+.tl-item{
+  display:flex;
+  gap:20px;
+  align-items:flex-start;
+  margin-bottom:32px;
+  position:relative;
+}
+.tl-item:last-child{margin-bottom:0}
+.tl-left{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  flex-shrink:0;
+  width:58px;
+}
+.tl-day{
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  color:var(--text-muted);
+  margin-bottom:8px;
+  white-space:nowrap;
+}
+.tl-dot{
+  width:16px;height:16px;
+  border-radius:50%;
+  background:var(--elevated);
+  border:2px solid var(--gold-border);
+  flex-shrink:0;
+  position:relative;
+  z-index:1;
+}
+.tl-dot-gold{
+  background:var(--gold);
+  border-color:var(--gold);
+  box-shadow:0 0 16px rgba(232,160,32,0.5);
+  width:20px;height:20px;
+}
+.tl-content{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:16px 20px;
+  flex:1;
+  transition:all .3s;
+}
+.tl-item-gold .tl-content{
+  background:var(--gold-dim);
+  border-color:var(--gold-border);
+}
+.tl-title{font-size:15px;font-weight:800;margin-bottom:5px}
+.tl-item-gold .tl-title{color:var(--gold)}
+.tl-desc{font-size:13px;color:var(--text-muted);line-height:1.65}
 </style>
 </head>
 <body>
@@ -1392,7 +1584,7 @@ footer{
 <div class="bar">
   <div class="bar-inner">
     <span class="bar-dot"></span>
-    🔥 Only 3 Spots Left This Week — Free Strategy Call For Landscapers
+    🔥 Only 3 Spots Left This Week — Free Strategy Call for Landscaping Business Owners
     <span class="bar-dot"></span>
   </div>
 </div>
@@ -1404,7 +1596,7 @@ footer{
     <a class="nav-link" href="#how">How It Works</a>
     <a class="nav-link" href="#testimonials">Results</a>
     <a class="nav-link" href="#guarantee">Guarantee</a>
-    <a class="nav-cta" href="#booking">Book Free Call →</a>
+    <a class="nav-cta" href="#" onclick="return openCal()">Book Free Call →</a>
   </div>
 </nav>
 
@@ -1419,7 +1611,7 @@ footer{
     <div class="hero-left reveal">
       <div class="hero-badge">
         <span class="pulse"></span>
-        Proven Landscaping Growth System
+        Built Exclusively for Landscaping Businesses
       </div>
       <h1>
         STOP CHASING<br>
@@ -1428,11 +1620,11 @@ footer{
         IN <span class="fill">30 DAYS.</span>
       </h1>
       <p class="hero-sub">
-        We install a <strong>done-for-you client acquisition system</strong> that floods your calendar with qualified landscaping jobs every month —
-        <strong>or you don't pay a single cent.</strong>
+        We run the ads. We screen the leads. We book qualified landscaping jobs <strong>straight into your calendar</strong> — lawn maintenance, cleanups, hardscaping, and more.
+        You just show up with your crew. <strong>Or you don't pay a cent.</strong>
       </p>
       <div class="hero-btns">
-        <a href="#booking" class="btn-primary">Claim Your Free Strategy Call →</a>
+        <a href="#" onclick="return openCal()" class="btn-primary">Claim Your Free Strategy Call →</a>
         <a href="#testimonials" class="btn-ghost">See Real Results ↓</a>
       </div>
       <div class="hero-trust">
@@ -1444,8 +1636,38 @@ footer{
           <div class="avatar">👩</div>
         </div>
         <div class="hero-trust-text">
-          Joined by <strong>47+ service businesses</strong> generating results
+          Joined by <strong>47+ landscaping businesses</strong> across the US
         </div>
+      </div>
+
+      <!-- Mobile-only: job booking proof (replaces hidden Calendly iframe) -->
+      <div class="hero-mobile-proof">
+        <div class="hmp-label"><span class="dot-green"></span> Jobs booked today</div>
+        <div class="hmp-card">
+          <span class="hmp-icon">🌿</span>
+          <div>
+            <div class="hmp-job">Weekly Lawn Maintenance Program</div>
+            <div class="hmp-meta">Mike T. · Austin, TX · $425/mo recurring</div>
+          </div>
+          <span class="hmp-check">✓</span>
+        </div>
+        <div class="hmp-card">
+          <span class="hmp-icon">🍂</span>
+          <div>
+            <div class="hmp-job">Spring Cleanup + Mulch Install</div>
+            <div class="hmp-meta">Sarah K. · Denver, CO · $780 one-time</div>
+          </div>
+          <span class="hmp-check">✓</span>
+        </div>
+        <div class="hmp-card">
+          <span class="hmp-icon">🪨</span>
+          <div>
+            <div class="hmp-job">Patio & Retaining Wall</div>
+            <div class="hmp-meta">James P. · Nashville, TN · $4,200</div>
+          </div>
+          <span class="hmp-check">✓</span>
+        </div>
+        <div class="hmp-total">+ <strong>17 more jobs</strong> booked this week for landscapers like you</div>
       </div>
     </div>
 
@@ -1513,13 +1735,13 @@ footer{
     <div class="pain-grid">
       <div class="pain-card reveal d1">
         <div class="pain-emoji">📉</div>
-        <div class="pain-title">Slow Seasons Destroy Cash Flow</div>
-        <div class="pain-desc">The bills don't stop in winter. Without a predictable pipeline, you're constantly stressed, discounting, and scrambling for the next job.</div>
+        <div class="pain-title">Slow Seasons Kill Your Cash Flow</div>
+        <div class="pain-desc">November hits and the phone goes quiet — but your truck payment, crew wages, and insurance don't stop. You need jobs coming in 12 months a year, not just spring.</div>
       </div>
       <div class="pain-card reveal d2">
         <div class="pain-emoji">🤷</div>
-        <div class="pain-title">Referrals Are Unreliable</div>
-        <div class="pain-desc">Word of mouth is great until it dries up. You can't build a real business on luck and hope — you need a system that works every month.</div>
+        <div class="pain-title">Referrals Dry Up Without Warning</div>
+        <div class="pain-desc">One month you're slammed, the next it's dead quiet. You can't hire a second crew, buy new equipment, or plan ahead when your lead flow depends on who happens to mention your name.</div>
       </div>
       <div class="pain-card reveal d3">
         <div class="pain-emoji">💸</div>
@@ -1528,18 +1750,18 @@ footer{
       </div>
       <div class="pain-card reveal d1">
         <div class="pain-emoji">⏰</div>
-        <div class="pain-title">No Time to Learn Marketing</div>
-        <div class="pain-desc">You're running crews, managing jobs, handling materials. You didn't start a landscaping business to become a digital marketer.</div>
+        <div class="pain-title">No Time — You're Already Running a Crew</div>
+        <div class="pain-desc">You're out on site at 7am, pricing jobs, managing your guys, picking up materials, and chasing invoices. You didn't start a landscaping business to learn Facebook ads.</div>
       </div>
       <div class="pain-card reveal d2">
         <div class="pain-emoji">🏘️</div>
-        <div class="pain-title">Racing to the Bottom on Price</div>
-        <div class="pain-desc">When clients find you through random Google searches, they compare only price. Our system attracts premium clients who value quality.</div>
+        <div class="pain-title">Competing Against Low-Ball Quotes</div>
+        <div class="pain-desc">You give a fair quote for quality work — some guy with a pickup truck undercuts you by $50. Our system puts you in front of homeowners who already value quality and are ready to pay for it.</div>
       </div>
       <div class="pain-card reveal d3">
         <div class="pain-emoji">📅</div>
-        <div class="pain-title">Half-Empty Calendar</div>
-        <div class="pain-desc">Every empty day costs you money. Your crew is your biggest fixed expense. Idle time is revenue walking out the door.</div>
+        <div class="pain-title">Crew Standing Around, Costing You Money</div>
+        <div class="pain-desc">Paying your guys to show up while the calendar has gaps is one of the most painful things in this business. Every idle hour is money out of your pocket.</div>
       </div>
     </div>
   </div>
@@ -1574,6 +1796,122 @@ footer{
         <div class="step-icon-wrap">📅</div>
         <div class="step-title">Qualified Jobs Land in Your Calendar</div>
         <div class="step-desc">Pre-qualified leads book directly into your calendar. You show up, give the quote, close the job. We handle everything else — ads, follow-up, optimization, reporting.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SERVICES WE BOOK ═══ -->
+<section class="section" id="services" style="background:var(--surface)">
+  <div class="container">
+    <div class="reveal" style="text-align:center;max-width:680px;margin:0 auto">
+      <div class="section-eyebrow">What We Book For You</div>
+      <h2 class="section-title">EVERY JOB TYPE.<br><span style="color:var(--gold)">YOUR MARKET.</span></h2>
+      <p class="section-sub">Tell us what you offer on the call — we target homeowners and property managers actively looking for exactly what you do.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal d1">
+        <div class="service-icon">🌿</div>
+        <div class="service-name">Lawn Maintenance Programs</div>
+        <div class="service-price">$300 – $600 / mo</div>
+        <div class="service-desc">Recurring mow, edge & blow accounts — the bread and butter of a stable landscaping business. We book the contract, you keep the revenue every month.</div>
+      </div>
+      <div class="service-card reveal d2">
+        <div class="service-icon">🍂</div>
+        <div class="service-name">Spring & Fall Cleanups</div>
+        <div class="service-price">$400 – $900</div>
+        <div class="service-desc">High-volume seasonal work that fills your schedule before and after peak season — when most landscapers are scrambling for work.</div>
+      </div>
+      <div class="service-card reveal d3">
+        <div class="service-icon">🪨</div>
+        <div class="service-name">Hardscaping Projects</div>
+        <div class="service-price">$2,000 – $12,000</div>
+        <div class="service-desc">Patios, retaining walls, driveways — the high-ticket jobs that can double your revenue in a single week. We attract homeowners ready to invest.</div>
+      </div>
+      <div class="service-card reveal d1">
+        <div class="service-icon">🌱</div>
+        <div class="service-name">Mulch & Bed Installs</div>
+        <div class="service-price">$350 – $700</div>
+        <div class="service-desc">Fast, profitable jobs that fill your crew's schedule and turn one-time customers into recurring lawn care clients.</div>
+      </div>
+      <div class="service-card reveal d2">
+        <div class="service-icon">💧</div>
+        <div class="service-name">Irrigation Installs</div>
+        <div class="service-price">$1,500 – $4,000</div>
+        <div class="service-desc">High-margin installs with built-in startup revenue every spring. We find the homeowners who just moved in and need a system fast.</div>
+      </div>
+      <div class="service-card reveal d3">
+        <div class="service-icon">🏢</div>
+        <div class="service-name">Commercial Accounts</div>
+        <div class="service-price">$800 – $3,000 / mo</div>
+        <div class="service-desc">HOAs, property managers, retail parks — the contracts that let you grow your crew and stop relying on one-off jobs.</div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:40px" class="reveal">
+      <p style="color:var(--text-muted);font-size:14px;margin-bottom:20px">Don't see your service? We've booked tree work, snow removal, artificial turf, and more. Book a call and we'll tell you what works in your market.</p>
+      <a href="#" onclick="return openCal()" class="btn-primary" style="font-size:15px;padding:16px 36px">See What We Can Book For You →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 30-DAY TIMELINE ═══ -->
+<section class="section" id="timeline">
+  <div class="container">
+    <div class="reveal" style="text-align:center;max-width:680px;margin:0 auto">
+      <div class="section-eyebrow">Your First 30 Days</div>
+      <h2 class="section-title">FROM THE CALL TO<br><span style="color:var(--gold)">CALENDAR FULL</span></h2>
+      <p class="section-sub">Here's exactly what happens after you book. No fluff, no months of "strategy" — just jobs in your calendar.</p>
+    </div>
+    <div class="timeline reveal">
+      <div class="tl-item">
+        <div class="tl-left">
+          <div class="tl-day">Day 1</div>
+          <div class="tl-dot"></div>
+        </div>
+        <div class="tl-content">
+          <div class="tl-title">Free Strategy Call — 60 Minutes</div>
+          <div class="tl-desc">We map your service area, go through your current jobs, identify your best-fit client types, and give you a live breakdown of your local market opportunity. Zero pressure.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-left">
+          <div class="tl-day">Day 2–4</div>
+          <div class="tl-dot"></div>
+        </div>
+        <div class="tl-content">
+          <div class="tl-title">We Build Everything — You Do Nothing</div>
+          <div class="tl-desc">Our team creates your ads, landing page, audience targeting, and follow-up sequences — all built specifically for your service area and job types. You don't touch a thing.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-left">
+          <div class="tl-day">Day 5–7</div>
+          <div class="tl-dot"></div>
+        </div>
+        <div class="tl-content">
+          <div class="tl-title">Campaigns Go Live in Your Market</div>
+          <div class="tl-desc">Your ads hit homeowners and property managers in your area across Facebook, Instagram, and Google. The booking link goes out. Leads start flowing in.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-left">
+          <div class="tl-day">Day 8–14</div>
+          <div class="tl-dot"></div>
+        </div>
+        <div class="tl-content">
+          <div class="tl-title">First Jobs Start Booking In</div>
+          <div class="tl-desc">Qualified leads book directly into your calendar. You get their name, address, job type, and best contact time. Just show up, give the quote, close the job.</div>
+        </div>
+      </div>
+      <div class="tl-item tl-item-gold">
+        <div class="tl-left">
+          <div class="tl-day" style="color:var(--gold)">Day 30</div>
+          <div class="tl-dot tl-dot-gold"></div>
+        </div>
+        <div class="tl-content">
+          <div class="tl-title">20 Jobs Minimum — Guaranteed or You Don't Pay</div>
+          <div class="tl-desc">If we haven't hit 20 qualified landscaping jobs in your calendar by day 30, you owe us nothing. We keep running your campaigns at our own cost until we hit the number.</div>
+        </div>
       </div>
     </div>
   </div>
@@ -1861,7 +2199,7 @@ footer{
       <div class="countdown-label">Seconds</div>
     </div>
   </div>
-  <a href="#booking" class="btn-primary" style="font-size:16px;padding:18px 44px">Secure My Free Strategy Call →</a>
+  <a href="#" onclick="return openCal()" class="btn-primary" style="font-size:16px;padding:18px 44px">Secure My Free Strategy Call →</a>
 </section>
 
 <!-- ═══ FAQ ═══ -->
@@ -1908,13 +2246,12 @@ footer{
 <section class="section booking-section" id="booking" style="background:var(--surface);text-align:center;padding:70px 2.5rem">
   <div class="container">
     <div class="reveal">
-      <div class="section-eyebrow">Ready?</div>
-      <h2 class="section-title">CLAIM YOUR FREE<br><span style="color:var(--gold)">STRATEGY CALL NOW</span></h2>
-      <p class="section-sub" style="margin:0 auto 36px">It takes 60 seconds to book. Zero pressure. We'll map out exactly how to get you 20+ jobs in 30 days.</p>
-      <a href="#top" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;" class="btn-primary" style="font-size:16px;padding:18px 48px;display:inline-flex">
+      <div class="section-eyebrow">Ready to Fill Your Calendar?</div>
+      <h2 class="section-title">BOOK YOUR FREE<br><span style="color:var(--gold)">STRATEGY CALL</span></h2>
+      <p class="section-sub" style="margin:0 auto 36px">Takes 60 seconds to book. On the call we'll do a live analysis of your local market, show you exactly what jobs we can book for you, and tell you what to expect in your first 30 days. Zero pressure — if it's not a fit, we'll tell you.</p>
+      <a href="#" onclick="return openCal()" class="btn-primary" style="font-size:16px;padding:18px 48px;display:inline-flex">
         Book My Free Call — Takes 60 Seconds →
       </a>
-      <div id="calendly-container" style="display:none"></div>
     </div>
   </div>
 </section>
@@ -1927,8 +2264,8 @@ footer{
 
 <!-- ═══ STICKY MOBILE BAR ═══ -->
 <div class="sticky-bar">
-  <div class="sticky-bar-sub">⚡ 3 spots left this week — free call</div>
-  <a href="#booking">Claim My Free Strategy Call →</a>
+  <div class="sticky-bar-sub">⚡ 3 landscaper spots left this week — 60 seconds to book</div>
+  <a href="#" onclick="return openCal()">Get 20 Landscaping Jobs in 30 Days →</a>
 </div>
 
 <!-- ═══ SCRIPTS ═══ -->
@@ -2083,19 +2420,15 @@ calcROI();
   setInterval(tick,1000);
 })();
 
-/* ── Calendly bottom widget (hero uses direct iframe) ── */
-window.addEventListener('load',function(){
+/* ── Calendly Popup — used by all CTAs ── */
+function openCal(){
   if(typeof Calendly!=='undefined'){
-    var el=document.getElementById('calendly-container');
-    if(el && el.style.display!=='none'){
-      Calendly.initInlineWidget({
-        url:'https://calendly.com/ahmedkarrar18/highpoint-listing-engine?hide_event_type_details=1&hide_gdpr_banner=1&background_color=0d0d0d&text_color=ffffff&primary_color=E8A020',
-        parentElement:el,
-        prefill:{},utm:{}
-      });
-    }
+    Calendly.initPopupWidget({
+      url:'https://calendly.com/ahmedkarrar18/highpoint-listing-engine?hide_event_type_details=1&hide_gdpr_banner=1&primary_color=E8A020'
+    });
   }
-});
+  return false;
+}
 </script>
 </body>
 </html>
